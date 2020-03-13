@@ -615,6 +615,11 @@ workspace, see <code>buildTarget/dependencySources</code>.</p>
   target: BuildTargetIdentifer;
   <span class="hljs-comment">/** The text documents or and directories that belong to this build target. */</span>
   sources: SourceItem[];
+  <span class="hljs-comment">/** The root directories from where source files should be relativized.
+   * 
+   * Example: ["file://Users/name/dev/metals/src/main/scala"]
+   */</span>
+  roots?: Uri[]; 
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> SourceItem {
