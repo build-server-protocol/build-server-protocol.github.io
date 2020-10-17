@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Build Server Protocol · Build Server Protocol</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This document describes version 2.0 (WIP) of the build server protocol."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Build Server Protocol · Build Server Protocol"/><meta property="og:type" content="website"/><meta property="og:url" content="https://build-server-protocol.github.io/build-server-protocol/index.html"/><meta property="og:description" content="This document describes version 2.0 (WIP) of the build server protocol."/><meta property="og:image" content="https://build-server-protocol.github.io/build-server-protocol/img/bsp-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://build-server-protocol.github.io/build-server-protocol/img/bsp-logo.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bsp-logo.svg" alt="Build Server Protocol"/><h2 class="headerTitleWithLogo">Build Server Protocol</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/specification.html" target="_self">Specification</a></li><li class=""><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/specification.html">Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/implementations.html">Implementations</a></li><li class="navListItem"><a class="navItem" href="/docs/server-discovery.html">Build Server Discovery</a></li><li class="navListItem"><a class="navItem" href="/docs/faq.html">Frequently Asked Questions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extensions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/extensions/scala.html">Scala</a></li><li class="navListItem"><a class="navItem" href="/docs/extensions/sbt.html">sbt</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Bindings</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/bindings/java.html">Java</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Build Server Protocol · Build Server Protocol</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This document is the specification of the Build Server Protocol (BSP)."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Build Server Protocol · Build Server Protocol"/><meta property="og:type" content="website"/><meta property="og:url" content="https://build-server-protocol.github.io/build-server-protocol/index.html"/><meta property="og:description" content="This document is the specification of the Build Server Protocol (BSP)."/><meta property="og:image" content="https://build-server-protocol.github.io/build-server-protocol/img/bsp-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://build-server-protocol.github.io/build-server-protocol/img/bsp-logo.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bsp-logo.svg" alt="Build Server Protocol"/><h2 class="headerTitleWithLogo">Build Server Protocol</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/specification.html" target="_self">Specification</a></li><li class=""><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/specification.html">Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/implementations.html">Implementations</a></li><li class="navListItem"><a class="navItem" href="/docs/server-discovery.html">Build Server Discovery</a></li><li class="navListItem"><a class="navItem" href="/docs/faq.html">Frequently Asked Questions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extensions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/extensions/jvm.html">JVM</a></li><li class="navListItem"><a class="navItem" href="/docs/extensions/scala.html">Scala</a></li><li class="navListItem"><a class="navItem" href="/docs/extensions/sbt.html">sbt</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Bindings</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/bindings/java.html">Java</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -54,32 +54,36 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/build-server-protocol/build-server-protocol/edit/master/docs/specification.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Build Server Protocol</h1></header><article><div><span><p>This document describes version 2.0 (WIP) of the build server protocol.</p>
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/build-server-protocol/build-server-protocol/edit/master/docs/specification.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Build Server Protocol</h1></header><article><div><span><p>This document is the specification of the Build Server Protocol (BSP).</p>
 <p>Edits to this specification can be made via a pull request against this markdown
-document.</p>
+document, see &quot;edit&quot; button at the top of this page on the website.</p>
 <h2><a class="anchor" aria-hidden="true" id="motivation"></a><a href="#motivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Motivation</h2>
-<p>The problem this document aims to address is the multiplied effort required to
-integrate between available language servers/editors and build tools. Currently,
-every language server must implement a custom integration for each supported
-build tool in order to extract compilation information such as classpaths,
-source directories or compiler diagnostics. Likewise, new build tools are
-expected to integrate with all available IDEs. The growing number of language
-servers and build tools in the wider programming community means tooling
+<p>The goal of BSP is to reduce the effort required by tooling developers to
+integrate between available IDEs and build tools. Currently, every IDE must
+implement a custom integration for each supported build tool in order to extract
+information such as source directory layouts or compiler options. Likewise, new
+build tools are expected to integrate with all available IDEs. The growing
+number of IDEs and build tools in the wider programming community means tooling
 developers spend a lot of time working on these integrations.</p>
-<p>The Build Server Protocol aims to define common functionality that both build
-tools (servers) and language servers/editors (clients) understand. This common
-functionality enables tooling developers to provide their end users the best
-developer experience while supporting build tools and language servers with less
-effort and time.</p>
+<p>The Build Server Protocol defines common functionality that both build tools
+(servers) and IDEs (clients) understand. This common functionality enables
+tooling developers to provide their end users the best developer experience
+while supporting build tools and language servers with less effort and time.</p>
 <h2><a class="anchor" aria-hidden="true" id="background"></a><a href="#background" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Background</h2>
 <p>The Build Server Protocol takes inspiration from the Language Server Protocol
-(LSP). Unlike in the Language Server Protocol, the language server or editor is
-referred to as the “client” and a build tool such as sbt/pants/gradle/bazel is
+(LSP). Unlike in the Language Server Protocol, the language server or IDE is
+referred to as the “client” and a build tool such as sbt/Gradle/Bazel is
 referred to as the “server”.</p>
 <p>The best way to read this document is by considering it as a wishlist from the
 perspective of an IDE developer.</p>
-<p>The code listings in this document are written using Scala syntax. Every data
-strucuture in this document has a direct translation to JSON and Protobuf.</p>
+<p>The code listings in this document are written using TypeScript syntax. Every
+data strucuture in this document has a direct translation to JSON and Protobuf.</p>
+<h2><a class="anchor" aria-hidden="true" id="relationship-with-lsp"></a><a href="#relationship-with-lsp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relationship with LSP</h2>
+<p>BSP can be used together with LSP in the same architecture. The diagram below
+illustrates an example how an LSP server can also act as a BSP client.</p>
+<p><img src="https://i.imgur.com/q4KEas9.png" alt=""></p>
+<p>BSP can also be used without LSP. In the example above, IntelliJ acts as a BSP
+client even if IntelliJ does not use LSP.</p>
 <h2><a class="anchor" aria-hidden="true" id="status"></a><a href="#status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Status</h2>
 <p>The Build Server Protocol is not an approved standard. Everything in this
 document is subject to change and open for discussions, including core data
@@ -90,9 +94,10 @@ BSP. The integration is available in the nightly releases of the Scala plugin.
 Other language servers, like <a href="https://github.com/lampepfl/dotty">Dotty IDE</a> and
 <a href="https://github.com/scalameta/metals">scalameta/metals</a>, are currently working
 or planning to work on a BSP integrations.</p>
-<p>On the server side, <a href="https://github.com/scalacenter/bloop">bloop</a> is the first
-server to implement BSP. There are ongoing efforts to implement BSP in popular
-build tools like <a href="https://github.com/sbt/sbt/issues/3890">sbt</a>.</p>
+<p>On the server side, <a href="https://github.com/scalacenter/bloop">Bloop</a> was the first
+server to implement BSP. sbt added built-in support in <a href="https://github.com/sbt/sbt/pull/5538">1.4.0</a>,
+and Mill ships with a <a href="https://www.lihaoyi.com/mill/page/contrib-modules.html#bsp---build-server-protocol">contrib.bsp module</a>
+since <a href="https://github.com/lihaoyi/mill/pull/664">0.5.2</a>.</p>
 <p>We're looking for third parties that implement BSP natively in other build tools
 like Gradle, Bazel or Pants.</p>
 <p>The Build Server Protocol has been designed to be language-agnostic. We're
@@ -127,8 +132,8 @@ configuration in each will have 4 build targets.</li>
 <li>a Scala 2.11 and 2.12 cross-built project for Scala.js and the JVM with main
 and test configurations will have 8 build targets.</li>
 </ul></li>
-<li>pants: a pants target corresponds one-to-one with a BuildTarget</li>
-<li>bazel: a bazel target corresponds one-to-one with a BuildTarget</li>
+<li>Pants: a pants target corresponds one-to-one with a BuildTarget</li>
+<li>Bazel: a bazel target corresponds one-to-one with a BuildTarget</li>
 </ul>
 <p>The general idea is that the BuildTarget data structure should contain only
 information that is is fast or cheap to compute.</p>
@@ -211,6 +216,16 @@ information that is is fast or cheap to compute.</p>
 
   <span class="hljs-comment">/** Target should be ignored by IDEs. */</span>
   <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> NoIDE = <span class="hljs-string">"no-ide"</span>;
+
+  <span class="hljs-comment">/** Actions on the target such as build and test should only be invoked manually
+   * and explicitly. For example, triggering a build on all targets in the workspace
+   * should by default not include this target.
+   *
+   * The original motivation to add the "manual" tag comes from a similar functionality
+   * that exists in Bazel, where targets with this tag have to be specified explicitly
+   * on the command line.
+   */</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Manual = <span class="hljs-string">"manual"</span>;
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> BuildTargetCapabilities {
@@ -361,6 +376,9 @@ notifications to the server.</p>
   <span class="hljs-comment">/** The server provides all the resource dependencies
    * via method buildTarget/resources */</span>
   resourcesProvider?: <span class="hljs-built_in">Boolean</span>;
+
+  <span class="hljs-comment">/** Reloading the build state through workspace/reload is supported */</span>
+  canReload?: <span class="hljs-built_in">Boolean</span>
 
   <span class="hljs-comment">/** The server sends notifications to the client on build
    * target change events via buildTarget/didChange */</span>
@@ -552,6 +570,22 @@ for the list of all available build targets in the workspace.</p>
   targets: BuildTarget[];
 }
 </code></pre>
+<h3><a class="anchor" aria-hidden="true" id="reload-request"></a><a href="#reload-request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reload request</h3>
+<p>The <code>reload</code> request is sent from the client to instruct the build server to reload
+the build configuration. This request should be supported by build tools that keep
+their state in memory. If the <code>reload</code> request returns with an error, it's expected
+that other requests respond with the previously known &quot;good&quot; state.</p>
+<p>Request:</p>
+<ul>
+<li>method: <code>workspace/reload</code></li>
+<li>params: <code>null</code></li>
+</ul>
+<p>Response:</p>
+<ul>
+<li>result: <code>null</code></li>
+<li>error: code and message in case an error happens during reload. For example,
+when the build configuration is invalid.</li>
+</ul>
 <h3><a class="anchor" aria-hidden="true" id="build-target-changed-notification"></a><a href="#build-target-changed-notification" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build Target Changed Notification</h3>
 <p>The build target changed notification is sent from the server to the client to
 signal a change in a build target. The server communicates during the initialize
@@ -608,7 +642,7 @@ workspace, see <code>buildTarget/dependencySources</code>.</p>
 <li>result: <code>BuildTargetSourcesResult</code>, defined as follows</li>
 </ul>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> SourcesResult {
-  items: SourcesItem[k];
+  items: SourcesItem[];
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> SourcesItem {
@@ -616,10 +650,10 @@ workspace, see <code>buildTarget/dependencySources</code>.</p>
   <span class="hljs-comment">/** The text documents or and directories that belong to this build target. */</span>
   sources: SourceItem[];
   <span class="hljs-comment">/** The root directories from where source files should be relativized.
-   * 
+   *
    * Example: ["file://Users/name/dev/metals/src/main/scala"]
    */</span>
-  roots?: Uri[]; 
+  roots?: Uri[];
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> SourceItem {
@@ -1176,4 +1210,4 @@ request.</li>
   cleaned: <span class="hljs-built_in">Boolean</span>;
 }
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/implementations.html"><span>Implementations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#motivation">Motivation</a></li><li><a href="#background">Background</a></li><li><a href="#status">Status</a></li><li><a href="#base-protocol">Base protocol</a></li><li><a href="#basic-json-structures">Basic Json Structures</a><ul class="toc-headings"><li><a href="#build-target">Build Target</a></li><li><a href="#build-target-identifier">Build Target Identifier</a></li><li><a href="#task-id">Task Id</a></li><li><a href="#status-code">Status Code</a></li><li><a href="#uri">Uri</a></li></ul></li><li><a href="#actual-protocol">Actual Protocol</a><ul class="toc-headings"><li><a href="#server-lifetime">Server Lifetime</a></li><li><a href="#workspace-build-targets-request">Workspace Build Targets Request</a></li><li><a href="#build-target-changed-notification">Build Target Changed Notification</a></li><li><a href="#build-target-sources-request">Build Target Sources Request</a></li><li><a href="#inverse-sources-request">Inverse Sources Request</a></li><li><a href="#dependency-sources-request">Dependency Sources Request</a></li><li><a href="#resources-request">Resources Request</a></li><li><a href="#task-notifications">Task Notifications</a></li><li><a href="#compile-request">Compile Request</a></li><li><a href="#test-request">Test Request</a></li><li><a href="#run-request">Run Request</a></li><li><a href="#clean-cache-request">Clean Cache Request</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="background-color:#555"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bsp-logo.svg" alt="Build Server Protocol" width="66" height="58"/></a><div><h5>Overview</h5><a href="/docs/specification.html">Specification</a><a href="/docs/implementations.html">Implementations</a></div><div><h5>Social</h5><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank"><img src="https://img.shields.io/github/stars/scalacenter/bsp.svg?color=%23087e8b&amp;label=stars&amp;logo=github&amp;style=social"/></a><a href="https://gitter.im/scalacenter/bsp" target="_blank"><img src="https://img.shields.io/gitter/room/scalacenter/bsp.svg?logo=gitter&amp;style=social"/></a></div></section><section class="copyright">Copyright © 2020 Build Server Protocol</section><section class="copyright"><p>The Build Server Protocol is a collaborative effort between developers at the <a href="https://scala.epfl.ch/">Scala Center</a> and <a href="https://www.jetbrains.com/">Jetbrains</a>.</p></section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/implementations.html"><span>Implementations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#motivation">Motivation</a></li><li><a href="#background">Background</a></li><li><a href="#relationship-with-lsp">Relationship with LSP</a></li><li><a href="#status">Status</a></li><li><a href="#base-protocol">Base protocol</a></li><li><a href="#basic-json-structures">Basic Json Structures</a><ul class="toc-headings"><li><a href="#build-target">Build Target</a></li><li><a href="#build-target-identifier">Build Target Identifier</a></li><li><a href="#task-id">Task Id</a></li><li><a href="#status-code">Status Code</a></li><li><a href="#uri">Uri</a></li></ul></li><li><a href="#actual-protocol">Actual Protocol</a><ul class="toc-headings"><li><a href="#server-lifetime">Server Lifetime</a></li><li><a href="#workspace-build-targets-request">Workspace Build Targets Request</a></li><li><a href="#reload-request">Reload request</a></li><li><a href="#build-target-changed-notification">Build Target Changed Notification</a></li><li><a href="#build-target-sources-request">Build Target Sources Request</a></li><li><a href="#inverse-sources-request">Inverse Sources Request</a></li><li><a href="#dependency-sources-request">Dependency Sources Request</a></li><li><a href="#resources-request">Resources Request</a></li><li><a href="#task-notifications">Task Notifications</a></li><li><a href="#compile-request">Compile Request</a></li><li><a href="#test-request">Test Request</a></li><li><a href="#run-request">Run Request</a></li><li><a href="#clean-cache-request">Clean Cache Request</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="background-color:#555"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bsp-logo.svg" alt="Build Server Protocol" width="66" height="58"/></a><div><h5>Overview</h5><a href="/docs/specification.html">Specification</a><a href="/docs/implementations.html">Implementations</a></div><div><h5>Social</h5><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank"><img src="https://img.shields.io/github/stars/scalacenter/bsp.svg?color=%23087e8b&amp;label=stars&amp;logo=github&amp;style=social"/></a><a href="https://gitter.im/scalacenter/bsp" target="_blank"><img src="https://img.shields.io/gitter/room/scalacenter/bsp.svg?logo=gitter&amp;style=social"/></a></div></section><section class="copyright">Copyright © 2020 Build Server Protocol</section><section class="copyright"><p>The Build Server Protocol is a collaborative effort between developers at the <a href="https://scala.epfl.ch/">Scala Center</a> and <a href="https://www.jetbrains.com/">Jetbrains</a>.</p></section></footer></div></body></html>
