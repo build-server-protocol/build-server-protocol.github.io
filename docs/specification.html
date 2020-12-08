@@ -136,7 +136,7 @@ and test configurations will have 8 build targets.</li>
 <li>Bazel: a bazel target corresponds one-to-one with a BuildTarget</li>
 </ul>
 <p>The general idea is that the BuildTarget data structure should contain only
-information that is is fast or cheap to compute.</p>
+information that is fast or cheap to compute.</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> BuildTarget {
   <span class="hljs-comment">/** The target’s unique identifier */</span>
   id: BuildTargetIdentifier;
