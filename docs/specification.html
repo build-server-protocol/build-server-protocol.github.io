@@ -378,6 +378,10 @@ notifications to the server.</p>
    * via method buildTarget/dependencySources */</span>
   dependencySourcesProvider?: <span class="hljs-built_in">Boolean</span>;
 
+  <span class="hljs-comment">/** The server cam provide a list of dependency modules (libraries with meta information)
+   * via method buildTarget/dependencyModules */</span>
+  dependencyModulesProvider?: <span class="hljs-built_in">Boolean</span>;
+
   <span class="hljs-comment">/** The server provides all the resource dependencies
    * via method buildTarget/resources */</span>
   resourcesProvider?: <span class="hljs-built_in">Boolean</span>;
@@ -740,6 +744,45 @@ dependency sources.</p>
    * target's dependencies.
    * Can be source files, jar files, zip files, or directories. */</span>
   sources: Uri[];
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="dependency-modules-request"></a><a href="#dependency-modules-request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dependency Modules Request</h3>
+<p>The build target dependency modules request is sent from the client to the
+server to query for the libraries of build target dependencies that are external
+to the workspace including meta information about library and their sources.
+It's an extended version of <code>buildTarget/sources</code>.</p>
+<ul>
+<li>method: <code>buildTarget/dependencyModules</code></li>
+<li>params: <code>DependencyModulesParams</code></li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DependencyModulesParams {
+  targets: BuildTargetIdentifier[];
+}
+</code></pre>
+<p>Response:</p>
+<ul>
+<li>result: <code>DependencyModulesResult</code>, defined as follows</li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DependencyModulesResult {
+  items: DependencyModulesItem[];
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DependencyModulesItem {
+  target: BuildTargetIdentifier;
+  modules: DependencyModule[];
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DependencyModule {
+  <span class="hljs-comment">/** Module name */</span>
+  name: <span class="hljs-built_in">String</span>;
+
+  <span class="hljs-comment">/** Module version */</span>
+  version: <span class="hljs-built_in">String</span>;
+
+  <span class="hljs-comment">/** Kind of data to expect in the `data` field. If this field is not set, the kind of data is not specified. */</span>
+  dataKind?: <span class="hljs-built_in">String</span>;
+
+  <span class="hljs-comment">/** Language-specific metadata about this module.
+   * See MavenDependencyModule as an example. */</span>
+  data?: <span class="hljs-built_in">any</span>;
 }
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resources-request"></a><a href="#resources-request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resources Request</h3>
@@ -1250,4 +1293,4 @@ request.</li>
   cleaned: <span class="hljs-built_in">Boolean</span>;
 }
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/implementations.html"><span>Implementations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#motivation">Motivation</a></li><li><a href="#background">Background</a></li><li><a href="#relationship-with-lsp">Relationship with LSP</a></li><li><a href="#status">Status</a></li><li><a href="#base-protocol">Base protocol</a></li><li><a href="#basic-json-structures">Basic Json Structures</a><ul class="toc-headings"><li><a href="#build-target">Build Target</a></li><li><a href="#build-target-identifier">Build Target Identifier</a></li><li><a href="#task-id">Task Id</a></li><li><a href="#status-code">Status Code</a></li><li><a href="#uri">Uri</a></li></ul></li><li><a href="#actual-protocol">Actual Protocol</a><ul class="toc-headings"><li><a href="#server-lifetime">Server Lifetime</a></li><li><a href="#workspace-build-targets-request">Workspace Build Targets Request</a></li><li><a href="#reload-request">Reload request</a></li><li><a href="#build-target-changed-notification">Build Target Changed Notification</a></li><li><a href="#build-target-sources-request">Build Target Sources Request</a></li><li><a href="#inverse-sources-request">Inverse Sources Request</a></li><li><a href="#dependency-sources-request">Dependency Sources Request</a></li><li><a href="#resources-request">Resources Request</a></li><li><a href="#task-notifications">Task Notifications</a></li><li><a href="#compile-request">Compile Request</a></li><li><a href="#test-request">Test Request</a></li><li><a href="#run-request">Run Request</a></li><li><a href="#debug-request">Debug Request</a></li><li><a href="#clean-cache-request">Clean Cache Request</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="background-color:#555"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bsp-logo.svg" alt="Build Server Protocol" width="66" height="58"/></a><div><h5>Overview</h5><a href="/docs/specification.html">Specification</a><a href="/docs/implementations.html">Implementations</a></div><div><h5>Social</h5><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank"><img src="https://img.shields.io/github/stars/scalacenter/bsp.svg?color=%23087e8b&amp;label=stars&amp;logo=github&amp;style=social"/></a><a href="https://gitter.im/scalacenter/bsp" target="_blank"><img src="https://img.shields.io/gitter/room/scalacenter/bsp.svg?logo=gitter&amp;style=social"/></a></div></section><section class="copyright">Copyright © 2021 Build Server Protocol</section><section class="copyright"><p>The Build Server Protocol is a collaborative effort between developers at the <a href="https://scala.epfl.ch/">Scala Center</a> and <a href="https://www.jetbrains.com/">Jetbrains</a>.</p></section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/implementations.html"><span>Implementations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#motivation">Motivation</a></li><li><a href="#background">Background</a></li><li><a href="#relationship-with-lsp">Relationship with LSP</a></li><li><a href="#status">Status</a></li><li><a href="#base-protocol">Base protocol</a></li><li><a href="#basic-json-structures">Basic Json Structures</a><ul class="toc-headings"><li><a href="#build-target">Build Target</a></li><li><a href="#build-target-identifier">Build Target Identifier</a></li><li><a href="#task-id">Task Id</a></li><li><a href="#status-code">Status Code</a></li><li><a href="#uri">Uri</a></li></ul></li><li><a href="#actual-protocol">Actual Protocol</a><ul class="toc-headings"><li><a href="#server-lifetime">Server Lifetime</a></li><li><a href="#workspace-build-targets-request">Workspace Build Targets Request</a></li><li><a href="#reload-request">Reload request</a></li><li><a href="#build-target-changed-notification">Build Target Changed Notification</a></li><li><a href="#build-target-sources-request">Build Target Sources Request</a></li><li><a href="#inverse-sources-request">Inverse Sources Request</a></li><li><a href="#dependency-sources-request">Dependency Sources Request</a></li><li><a href="#dependency-modules-request">Dependency Modules Request</a></li><li><a href="#resources-request">Resources Request</a></li><li><a href="#task-notifications">Task Notifications</a></li><li><a href="#compile-request">Compile Request</a></li><li><a href="#test-request">Test Request</a></li><li><a href="#run-request">Run Request</a></li><li><a href="#debug-request">Debug Request</a></li><li><a href="#clean-cache-request">Clean Cache Request</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="background-color:#555"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bsp-logo.svg" alt="Build Server Protocol" width="66" height="58"/></a><div><h5>Overview</h5><a href="/docs/specification.html">Specification</a><a href="/docs/implementations.html">Implementations</a></div><div><h5>Social</h5><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank"><img src="https://img.shields.io/github/stars/scalacenter/bsp.svg?color=%23087e8b&amp;label=stars&amp;logo=github&amp;style=social"/></a><a href="https://gitter.im/scalacenter/bsp" target="_blank"><img src="https://img.shields.io/gitter/room/scalacenter/bsp.svg?logo=gitter&amp;style=social"/></a></div></section><section class="copyright">Copyright © 2021 Build Server Protocol</section><section class="copyright"><p>The Build Server Protocol is a collaborative effort between developers at the <a href="https://scala.epfl.ch/">Scala Center</a> and <a href="https://www.jetbrains.com/">Jetbrains</a>.</p></section></footer></div></body></html>
