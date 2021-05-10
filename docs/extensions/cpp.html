@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>C++ Extension · Build Server Protocol</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The following section contains C++-specific extensions to the build server"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="C++ Extension · Build Server Protocol"/><meta property="og:type" content="website"/><meta property="og:url" content="https://build-server-protocol.github.io/build-server-protocol/index.html"/><meta property="og:description" content="The following section contains C++-specific extensions to the build server"/><meta property="og:image" content="https://build-server-protocol.github.io/build-server-protocol/img/bsp-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://build-server-protocol.github.io/build-server-protocol/img/bsp-logo.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bsp-logo.svg" alt="Build Server Protocol"/><h2 class="headerTitleWithLogo">Build Server Protocol</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/specification.html" target="_self">Specification</a></li><li class=""><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/build-server-protocol/build-server-protocol/edit/master/docs/extensions/cpp.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">C++ Extension</h1></header><article><div><span><p>The following section contains C++-specific extensions to the build server
+protocol.</p>
+<h2><a class="anchor" aria-hidden="true" id="c-build-target"></a><a href="#c-build-target" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>C++ Build Target</h2>
+<p><code>CppBuildTarget</code> is a basic data structure that contains c++-specific
+metadata, specifically compiler reference. This metadata is embedded in
+the <code>data: Option[Json]</code> field of the <code>BuildTarget</code> definition, when
+the <code>dataKind</code> field contains &quot;cpp&quot;.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> CppBuildTarget {
+  <span class="hljs-comment">/** The c++ version this target is supposed to use. 
+    * For example: C++11 */</span>
+  version?: <span class="hljs-built_in">String</span>;
+
+  <span class="hljs-comment">/** The type of compiler this target is supposed to use. 
+    * For example: gcc */</span>
+  compiler?: <span class="hljs-built_in">String</span>;
+
+  <span class="hljs-comment">/** Uri representating path to the c compiler. 
+    * For example: file:///usr/bin/gcc */</span>
+  cCompiler?: Uri;
+
+  <span class="hljs-comment">/** Uri representating path to the c++ compiler. 
+    * For example: file:///usr/bin/g++ */</span>
+  cppCompiler?: Uri;
+  
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="cpp-options-request"></a><a href="#cpp-options-request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cpp Options Request</h2>
+<p>The build target cpp options request is sent from the client to the server to
+query for the list of compiler options necessary to compile in a given list of
+targets.</p>
+<ul>
+<li>method: <code>buildTarget/cppOptions</code></li>
+<li>params: <code>CppOptionsParams</code></li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> CppOptionsParams {
+  targets: BuildTargetIdentifier[];
+}
+</code></pre>
+<p>Response:</p>
+<ul>
+<li>result: <code>CppOptionsResult</code>, defined as follows</li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> CppOptionsResult {
+  items: List[CppOptionsItem];
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> CppOptionsItem {
+  target: BuildTargetIdentifier;
+
+  <span class="hljs-comment">/** Attributes added in the given order to COPTS
+   * before compiling the target.
+   * For example: -Iexternal/gtest/include */</span>
+  copts: <span class="hljs-built_in">String</span>[];
+    
+  <span class="hljs-comment">/** Attributes prepended with -D
+   * and added to the compile command line
+   * For example: BOOST_FALLTHROUGH */</span>
+  defines: <span class="hljs-built_in">String</span>[];
+    
+  <span class="hljs-comment">/** Attributes added to the linker command
+    * For example: -pthread */</span>
+  linkopts: <span class="hljs-built_in">String</span>[];
+    
+  <span class="hljs-comment">/** Create a shared library.
+   * The presence of this flag means that linking occurs with the -shared flag
+   * For example: gcc */</span>
+  linkshared?: <span class="hljs-built_in">Boolean</span>;
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#c-build-target">C++ Build Target</a></li><li><a href="#cpp-options-request">Cpp Options Request</a></li></ul></nav></div><footer class="nav-footer" id="footer" style="background-color:#555"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bsp-logo.svg" alt="Build Server Protocol" width="66" height="58"/></a><div><h5>Overview</h5><a href="/docs/specification.html">Specification</a><a href="/docs/implementations.html">Implementations</a></div><div><h5>Social</h5><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank"><img src="https://img.shields.io/github/stars/scalacenter/bsp.svg?color=%23087e8b&amp;label=stars&amp;logo=github&amp;style=social"/></a><a href="https://gitter.im/scalacenter/bsp" target="_blank"><img src="https://img.shields.io/gitter/room/scalacenter/bsp.svg?logo=gitter&amp;style=social"/></a></div></section><section class="copyright">Copyright © 2021 Build Server Protocol</section><section class="copyright"><p>The Build Server Protocol is a collaborative effort between developers at the <a href="https://scala.epfl.ch/">Scala Center</a> and <a href="https://www.jetbrains.com/">Jetbrains</a>.</p></section></footer></div></body></html>
