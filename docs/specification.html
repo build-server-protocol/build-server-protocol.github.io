@@ -1024,7 +1024,10 @@ field must include a <code>CompileReport</code> object:</p>
   warnings: Int;
 
   <span class="hljs-comment">/** The total number of milliseconds it took to compile the target. */</span>
-  time?: Int];
+  time?: Int;
+
+  <span class="hljs-comment">/** The compilation was a noOp compilation. */</span>
+  noOp?: <span class="hljs-built_in">Boolean</span>;
 }
 </code></pre>
 <p>The server is free to send any number of <code>build/publishDiagnostics</code> and
