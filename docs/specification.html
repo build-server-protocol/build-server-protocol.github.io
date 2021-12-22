@@ -94,12 +94,16 @@ BSP. The integration is available in the nightly releases of the Scala plugin.
 Other language servers, like <a href="https://github.com/lampepfl/dotty">Dotty IDE</a> and
 <a href="https://github.com/scalameta/metals">scalameta/metals</a>, are currently working
 or planning to work on a BSP integrations.</p>
-<p>On the server side, <a href="https://github.com/scalacenter/bloop">Bloop</a> was the first
-server to implement BSP. sbt added built-in support in <a href="https://github.com/sbt/sbt/pull/5538">1.4.0</a>,
-and Mill ships with a <a href="https://www.lihaoyi.com/mill/page/contrib-modules.html#bsp---build-server-protocol">contrib.bsp module</a>
-since <a href="https://github.com/lihaoyi/mill/pull/664">0.5.2</a>.</p>
+<p>On the server side,</p>
+<ul>
+<li><a href="https://github.com/scalacenter/bloop">Bloop</a> was the first
+server to implement BSP</li>
+<li>sbt added built-in support in <a href="https://github.com/sbt/sbt/pull/5538">1.4.0</a>,</li>
+<li>Mill ships with <a href="https://com-lihaoyi.github.io/mill/mill/Intro_to_Mill.html#_build_server_protocol_bsp">built-in BSP support</a></li>
+<li>Bazel support is provided by <a href="https://github.com/JetBrains/bazel-bsp">bazel-bsp</a></li>
+</ul>
 <p>We're looking for third parties that implement BSP natively in other build tools
-like Gradle, Bazel or Pants.</p>
+such as Gradle.</p>
 <p>The Build Server Protocol has been designed to be language-agnostic. We're
 looking for ways to collaborate with other programming language communities and
 build tool authors.</p>
@@ -644,7 +648,7 @@ target. The sources response must not include sources that are external to the
 workspace, see <code>buildTarget/dependencySources</code>.</p>
 <ul>
 <li>method: <code>buildTarget/sources</code></li>
-<li>params: <code>BuildTargetSourcesParams</code></li>
+<li>params: <code>SourcesParams</code></li>
 </ul>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> SourcesParams {
   targets: BuildTargetIdentifier[];
