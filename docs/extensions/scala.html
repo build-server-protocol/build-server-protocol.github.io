@@ -97,7 +97,7 @@ This metadata is embedded in the <code>data: Option[Json]</code> field of the
    * It is the result of `buildTarget/scalaTestClasses`. */</span>
   testClasses?: ScalaTestClassesItem[];
 
-  <span class="hljs-comment">/** The JVM options to run tests with. They replace any options 
+  <span class="hljs-comment">/** The JVM options to run tests with. They replace any options
    * that are defined by the build server if defined.
    */</span>
   jvmOptions?: <span class="hljs-built_in">String</span>[];
@@ -182,6 +182,13 @@ request.</li>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ScalaTestClassesItem {
   <span class="hljs-comment">/** The build target that contains the test classes. */</span>
   target: BuildTargetIdentifier;
+
+  <span class="hljs-comment">/**
+   * Name of the the framework to which classes belong. 
+   * It's optional in order to maintain compatibility, however it is expected 
+   * from the newer implementations to not leave that field unspecified.
+   */</span>
+  framework?: <span class="hljs-built_in">String</span>;
 
   <span class="hljs-comment">/** The fully qualified names of the test classes in this target */</span>
   classes: <span class="hljs-built_in">String</span>[];
