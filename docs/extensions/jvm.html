@@ -98,12 +98,12 @@ request.</li>
     target: BuildTargetIdentifier;
     classpath: Uri[];
     jvmOptions: <span class="hljs-built_in">String</span>[];
+    workingDirectory: <span class="hljs-built_in">String</span>;
+    environmentVariables: Map&lt;<span class="hljs-built_in">String</span>, <span class="hljs-built_in">String</span>&gt;;
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> JvmTestEnvironmentResult{
     items: JvmEnvironmentItem[];
-    workingDirectory: <span class="hljs-built_in">String</span>;
-    environmentVariables: Map&lt;<span class="hljs-built_in">String</span>, <span class="hljs-built_in">String</span>&gt;;
 }
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="run-environment-request"></a><a href="#run-environment-request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run Environment Request</h2>
@@ -128,12 +128,12 @@ request.</li>
     target: BuildTargetIdentifier;
     classpath: Uri[];
     jvmOptions: <span class="hljs-built_in">String</span>[];
+    workingDirectory: <span class="hljs-built_in">String</span>;
+    environmentVariables: Map&lt;<span class="hljs-built_in">String</span>, <span class="hljs-built_in">String</span>&gt;;
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> JvmRunEnvironmentResult{
     items: JvmEnvironmentItem[];
-    workingDirectory: <span class="hljs-built_in">String</span>;
-    environmentVariables: Map&lt;<span class="hljs-built_in">String</span>, <span class="hljs-built_in">String</span>&gt;;
 }
 </code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/faq.html"><span class="arrow-prev">← </span><span>Frequently Asked Questions</span></a><a class="docs-next button" href="/docs/extensions/scala.html"><span>Scala</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#jvm-build-target">JVM Build Target</a></li><li><a href="#test-environment-request">Test Environment Request</a></li><li><a href="#run-environment-request">Run Environment Request</a></li></ul></nav></div><footer class="nav-footer" id="footer" style="background-color:#555"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bsp-logo.svg" alt="Build Server Protocol" width="66" height="58"/></a><div><h5>Overview</h5><a href="/docs/specification.html">Specification</a><a href="/docs/implementations.html">Implementations</a></div><div><h5>Social</h5><a href="https://github.com/build-server-protocol/build-server-protocol" target="_blank"><img src="https://img.shields.io/github/stars/scalacenter/bsp.svg?color=%23087e8b&amp;label=stars&amp;logo=github&amp;style=social"/></a><a href="https://gitter.im/scalacenter/bsp" target="_blank"><img src="https://img.shields.io/gitter/room/scalacenter/bsp.svg?logo=gitter&amp;style=social"/></a></div></section><section class="copyright">Copyright © 2022 Build Server Protocol</section><section class="copyright"><p>The Build Server Protocol is a collaborative effort between developers at the <a href="https://scala.epfl.ch/">Scala Center</a> and <a href="https://www.jetbrains.com/">Jetbrains</a>.</p></section></footer></div></body></html>
