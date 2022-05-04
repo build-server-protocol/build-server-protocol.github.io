@@ -1097,7 +1097,7 @@ include a <code>TestTask</code> object.</p>
 <p>The completion of a test task should be signalled with a <code>build/taskFinish</code>
 notification. When the testing unit is a build target, the notification's
 <code>dataKind</code> field must be <code>test-report</code> and the <code>data</code> field must include a
-<code>TestTask</code> object:</p>
+<code>TestReport</code> object:</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> TestReport {
   <span class="hljs-comment">/** The build target that was compiled. */</span>
   target: BuildTargetIdentifier;
