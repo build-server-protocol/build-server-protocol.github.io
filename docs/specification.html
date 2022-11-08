@@ -382,7 +382,7 @@ notifications to the server.</p>
    * via method buildTarget/dependencySources */</span>
   dependencySourcesProvider?: <span class="hljs-built_in">Boolean</span>;
 
-  <span class="hljs-comment">/** The server cam provide a list of dependency modules (libraries with meta information)
+  <span class="hljs-comment">/** The server can provide a list of dependency modules (libraries with meta information)
    * via method buildTarget/dependencyModules */</span>
   dependencyModulesProvider?: <span class="hljs-built_in">Boolean</span>;
 
@@ -394,12 +394,22 @@ notifications to the server.</p>
    * via method buildTarget/outputPaths */</span>
   outputPathsProvider?: <span class="hljs-built_in">Boolean</span>;
 
-  <span class="hljs-comment">/** Reloading the build state through workspace/reload is supported */</span>
-  canReload?: <span class="hljs-built_in">Boolean</span>
-
   <span class="hljs-comment">/** The server sends notifications to the client on build
    * target change events via buildTarget/didChange */</span>
   buildTargetChangedProvider?: <span class="hljs-built_in">Boolean</span>;
+
+  <span class="hljs-comment">/** The server can respond to `buildTarget/jvmRunEnvironment` requests with the
+   * necessary information required to launch a Java process to run a main class. */</span>
+  jvmRunEnvironmentProvider?: <span class="hljs-built_in">Boolean</span>;
+
+  <span class="hljs-comment">/** The server can respond to `buildTarget/jvmTestEnvironment` requests with the
+   * necessary information required to launch a Java process for testing or
+   * debugging. */</span>
+  jvmTestEnvironmentProvider?: <span class="hljs-built_in">Boolean</span>;
+
+  <span class="hljs-comment">/** Reloading the build state through workspace/reload is supported */</span>
+  canReload?: <span class="hljs-built_in">Boolean</span>
+
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> CompileProvider {
