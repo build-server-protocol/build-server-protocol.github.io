@@ -1311,7 +1311,7 @@ and returns a connection URI for the client to interact with.</p>
 </ul>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DebugSessionParams {
   <span class="hljs-comment">/** A sequence of build targets affected by the debugging action. */</span>
-  targets: List[BuildTargetIdentifier],
+  targets: BuildTargetIdentifier[],
 
   <span class="hljs-comment">/** The kind of data to expect in the `data` field. */</span>
   dataKind: <span class="hljs-built_in">String</span>;
